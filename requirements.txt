@@ -1,0 +1,8 @@
+dotenv
+pandas
+numpy
+supabase
+schedule
+fastapi[standard]
+uvicorn[standard]
+pydantic
