@@ -35,15 +35,15 @@ class FarmerController:
     def getFarmers():
         # supabase.from_('Farmer').select('*').order(column='id').execute()
         try:
-            data = supabase.from_('Farmer').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('Farmer').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getFarmerByID(params):
         try:
-            data = supabase.from_('Farmer').select('*').eq('FarmerID', params['FarmerID']).execute()
-            return data
+            response = supabase.from_('Farmer').select('*').eq('FarmerID', params['FarmerID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -76,8 +76,8 @@ class FarmerController:
 
     def deleteFarmer(params):
         try:
-            data = supabase.table('Farmer').delete().eq('FarmerID', params['FarmerID']).execute()
-            return data
+            response = supabase.table('Farmer').delete().eq('FarmerID', params['FarmerID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -99,7 +99,7 @@ class FarmerNextOfKinController:
     def getFarmerNextOfKins():
         try:
             response = supabase.from_('FarmerNextOfKin').select('*').order(column='id').execute()
-            return response
+            return response.data
         except Exception as e:
             return e
 
@@ -107,7 +107,7 @@ class FarmerNextOfKinController:
         try:
             # print(params)
             response = supabase.from_('FarmerNextOfKin').select('*').eq('NationalID', params['NationalID']).execute()
-            return response.data
+            return response.data.response
         except Exception as e:
             return e
 
@@ -150,15 +150,15 @@ class FarmerBankDetailsController:
 
     def getFarmerBankDetails():
         try:
-            data = supabase.from_('FarmerBankDetails').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('FarmerBankDetails').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getFarmerBankDetailsByID(params):
         try:
-            data = supabase.from_('FarmerBankDetails').select('*').eq('AccountNumber', params['AccountNumber']).execute()
-            return data
+            response = supabase.from_('FarmerBankDetails').select('*').eq('AccountNumber', params['AccountNumber']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -179,8 +179,8 @@ class FarmerBankDetailsController:
 
     def deleteFarmerBankDetails(params):
         try:
-            data = supabase.table('FarmerBankDetails').delete().eq('AccountNumber', params['AccountNumber']).execute()
-            return data
+            response = supabase.table('FarmerBankDetails').delete().eq('AccountNumber', params['AccountNumber']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -201,15 +201,15 @@ class FarmerSpouseController:
 
     def getFarmersSpouses():
         try:
-            data = supabase.from_('FarmerSpouse').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('FarmerSpouse').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getFarmerSpouseByID(params):
         try:
-            data = supabase.from_('FarmerSpouse').select('*').eq('NationalID', params['NationalID']).execute()
-            return data
+            response = supabase.from_('FarmerSpouse').select('*').eq('NationalID', params['NationalID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -227,8 +227,8 @@ class FarmerSpouseController:
 
     def deleteFarmerSpouse(params):
         try:
-            data = supabase.table('FarmerSpouse').delete().eq('NationalID', params['NationalID']).execute()
-            return data
+            response = supabase.table('FarmerSpouse').delete().eq('NationalID', params['NationalID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -243,7 +243,8 @@ class FarmerFacilityDetailsController:
             'TownCity' : farmerfacilitydetails.TownCity,
             'District' : farmerfacilitydetails.District,
             'Province' : farmerfacilitydetails.Province,
-            'Coordinates' : farmerfacilitydetails.Coordinates,
+            'CoordinatesLat' : farmerfacilitydetails.CoordinatesLat,
+            'CoordinatesLong' : farmerfacilitydetails.CoordinatesLong,
             'LandOwnership' : farmerfacilitydetails.LandOwnership,
             'LandSize' : farmerfacilitydetails.LandSize,
             'LandType' : farmerfacilitydetails.LandType,
@@ -260,15 +261,15 @@ class FarmerFacilityDetailsController:
 
     def getFarmerFacilityDetails():
         try:
-            data = supabase.from_('FarmerFacilityDetails').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('FarmerFacilityDetails').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getFarmerFacilityDetailsByID(params):
         try:
-            data = supabase.from_('FarmerFacilityDetails').select('*').eq('FarmID', params['FarmID']).execute()
-            return data
+            response = supabase.from_('FarmerFacilityDetails').select('*').eq('FarmID', params['FarmID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -280,7 +281,8 @@ class FarmerFacilityDetailsController:
                 'TownCity' : farmerfacilitydetails.TownCity,
                 'District' : farmerfacilitydetails.District,
                 'Province' : farmerfacilitydetails.Province,
-                'Coordinates' : farmerfacilitydetails.Coordinates,
+                'CoordinatesLat' : farmerfacilitydetails.CoordinatesLat,
+                'CoordinatesLong' : farmerfacilitydetails.CoordinatesLong,
                 'LandOwnership' : farmerfacilitydetails.LandOwnership,
                 'LandSize' : farmerfacilitydetails.LandSize,
                 'LandType' : farmerfacilitydetails.LandType,
@@ -297,8 +299,8 @@ class FarmerFacilityDetailsController:
 
     def deleteFarmerFacilityDetails(params):
         try:
-            data = supabase.table('FarmerFacilityDetails').delete().eq('FarmID', params['FarmID']).execute()
-            return data
+            response = supabase.table('FarmerFacilityDetails').delete().eq('FarmID', params['FarmID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -321,15 +323,15 @@ class FarmerFacilityCooperativeController:
 
     def getFarmerFacilityCooperatives():
         try:
-            data = supabase.from_('FarmerFacilityCooperative').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('FarmerFacilityCooperative').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getFarmerFacilityCooperativeByID(params):
         try:
-            data = supabase.from_('FarmerFacilityCooperative').select('*').eq('CooperativeID', params['CooperativeID']).execute()
-            return data
+            response = supabase.from_('FarmerFacilityCooperative').select('*').eq('CooperativeID', params['CooperativeID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -349,8 +351,8 @@ class FarmerFacilityCooperativeController:
 
     def deleteFarmerFacilityCooperative(params):
         try:
-            data = supabase.table('FarmerFacilityCooperative').delete().eq('CooperativeID', params['CooperativeID']).execute()
-            return data
+            response = supabase.table('FarmerFacilityCooperative').delete().eq('CooperativeID', params['CooperativeID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -371,15 +373,15 @@ class CropController:
 
     def getCrops():
         try:
-            data = supabase.from_('Crop').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('Crop').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getCropByID(params):
         try:
-            data = supabase.from_('Crop').select('*').eq('CropID', params['CropID']).execute()
-            return data
+            response = supabase.from_('Crop').select('*').eq('CropID', params['CropID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -397,8 +399,8 @@ class CropController:
 
     def deleteCrop(params):
         try:
-            data = supabase.table('Crop').delete().eq('CropID', params['CropID']).execute()
-            return data
+            response = supabase.table('Crop').delete().eq('CropID', params['CropID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -418,15 +420,15 @@ class CropProductionController:
 
     def getCropProductions():
         try:
-            data = supabase.from_('CropProduction').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('CropProduction').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getCropProductionByID(params):
         try:
-            data = supabase.from_('CropProduction').select('*').eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
-            return data
+            response = supabase.from_('CropProduction').select('*').eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -443,8 +445,8 @@ class CropProductionController:
 
     def deleteCropProduction(params):
         try:
-            data = supabase.table('CropProduction').delete().eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
-            return data
+            response = supabase.table('CropProduction').delete().eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -468,15 +470,15 @@ class CropCertificateController:
 
     def getCropCertificates():
         try:
-            data = supabase.from_('CropCertificate').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('CropCertificate').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getCropCertificateByID(params):
         try:
-            data = supabase.from_('CropCertificate').select('*').eq('CertificateID', params['CertificateID']).execute()
-            return data
+            response = supabase.from_('CropCertificate').select('*').eq('CertificateID', params['CertificateID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -497,8 +499,8 @@ class CropCertificateController:
 
     def deleteCropCertificate(params):
         try:
-            data = supabase.table('CropCertificate').delete().eq('CertificateID', params['CertificateID']).execute()
-            return data
+            response = supabase.table('CropCertificate').delete().eq('CertificateID', params['CertificateID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -518,15 +520,15 @@ class CertificateIssuerController:
 
     def getCertificateIssuers():
         try:
-            data = supabase.from_('CertificateIssuer').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('CertificateIssuer').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getCertificateIssuerByID(params):
         try:
-            data = supabase.from_('CertificateIssuer').select('*').eq('IssuerID', params['IssuerID']).execute()
-            return data
+            response = supabase.from_('CertificateIssuer').select('*').eq('IssuerID', params['IssuerID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -543,8 +545,8 @@ class CertificateIssuerController:
 
     def deleteCertificateIssuer(params):
         try:
-            data = supabase.table('CertificateIssuer').delete().eq('IssuerID', params['IssuerID']).execute()
-            return data
+            response = supabase.table('CertificateIssuer').delete().eq('IssuerID', params['IssuerID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -568,15 +570,15 @@ class ContractController:
 
     def getContracts():
         try:
-            data = supabase.from_('Contract').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('Contract').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getContractByID(params):
         try:
-            data = supabase.from_('Contract').select('*').eq('ContractID', params['ContractID']).execute()
-            return data
+            response = supabase.from_('Contract').select('*').eq('ContractID', params['ContractID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -597,8 +599,8 @@ class ContractController:
 
     def deleteContract(params):
         try:
-            data = supabase.table('Contract').delete().eq('ContractID', params['ContractID']).execute()
-            return data
+            response = supabase.table('Contract').delete().eq('ContractID', params['ContractID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -620,15 +622,15 @@ class ContractBidController:
 
     def getContractBids():
         try:
-            data = supabase.from_('ContractBid').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('ContractBid').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getContractBidByID(params):
         try:
-            data = supabase.from_('ContractBid').select('*').eq('BidID', params['BidID']).execute()
-            return data
+            response = supabase.from_('ContractBid').select('*').eq('BidID', params['BidID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -647,8 +649,8 @@ class ContractBidController:
 
     def deleteContractBid(params):
         try:
-            data = supabase.table('ContractBid').delete().eq('BidID', params['BidID']).execute()
-            return data
+            response = supabase.table('ContractBid').delete().eq('BidID', params['BidID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -671,15 +673,15 @@ class LogisticsCompanyController:
 
     def getLogisticsCompanys():
         try:
-            data = supabase.from_('LogisticsCompany').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('LogisticsCompany').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getLogisticsCompanyByID(params):
         try:
-            data = supabase.from_('LogisticsCompany').select('*').eq('CompanyID', params['CompanyID']).execute()
-            return data
+            response = supabase.from_('LogisticsCompany').select('*').eq('CompanyID', params['CompanyID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -699,8 +701,8 @@ class LogisticsCompanyController:
 
     def deleteLogisticsCompany(params):
         try:
-            data = supabase.table('LogisticsCompany').delete().eq('CompanyID', params['CompanyID']).execute()
-            return data
+            response = supabase.table('LogisticsCompany').delete().eq('CompanyID', params['CompanyID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -721,15 +723,15 @@ class LogisticsCompanyDriverController:
 
     def getLogisticsCompanyDrivers():
         try:
-            data = supabase.from_('LogisticsCompanyDriver').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('LogisticsCompanyDriver').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getLogisticsCompanyDriverByID(params):
         try:
-            data = supabase.from_('LogisticsCompanyDriver').select('*').eq('DriverID', params['DriverID']).execute()
-            return data
+            response = supabase.from_('LogisticsCompanyDriver').select('*').eq('DriverID', params['DriverID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -747,8 +749,8 @@ class LogisticsCompanyDriverController:
 
     def deleteLogisticsCompanyDriver(params):
         try:
-            data = supabase.table('LogisticsCompanyDriver').delete().eq('DriverID', params['DriverID']).execute()
-            return data
+            response = supabase.table('LogisticsCompanyDriver').delete().eq('DriverID', params['DriverID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -774,15 +776,15 @@ class LogisticsVehicleController:
 
     def getLogisticsVehicles():
         try:
-            data = supabase.from_('LogisticsVehicle').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('LogisticsVehicle').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getLogisticsVehicleByID(params):
         try:
-            data = supabase.from_('LogisticsVehicle').select('*').eq('VehicleID', params['VehicleID']).execute()
-            return data
+            response = supabase.from_('LogisticsVehicle').select('*').eq('VehicleID', params['VehicleID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -805,8 +807,8 @@ class LogisticsVehicleController:
 
     def deleteLogisticsVehicle(params):
         try:
-            data = supabase.table('LogisticsVehicle').delete().eq('VehicleID', params['VehicleID']).execute()
-            return data
+            response = supabase.table('LogisticsVehicle').delete().eq('VehicleID', params['VehicleID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -829,15 +831,15 @@ class LogisticsVehicleJourneyController:
 
     def getLogisticsVehicleJourneys():
         try:
-            data = supabase.from_('LogisticsVehicleJourney').select('*').order(column='id').execute()
-            return data
+            response = supabase.from_('LogisticsVehicleJourney').select('*').order(column='id').execute()
+            return response.data
         except Exception as e:
             return e
 
     def getLogisticsVehicleJourneyByID(params):
         try:
-            data = supabase.from_('LogisticsVehicleJourney').select('*').eq('JourneyID', params['JourneyID']).execute()
-            return data
+            response = supabase.from_('LogisticsVehicleJourney').select('*').eq('JourneyID', params['JourneyID']).execute()
+            return response.data
         except Exception as e:
             return e
 
@@ -857,7 +859,7 @@ class LogisticsVehicleJourneyController:
 
     def deleteLogisticsVehicleJourney(params):
         try:
-            data = supabase.table('LogisticsVehicleJourney').delete().eq('JourneyID', params['JourneyID']).execute()
-            return data
+            response = supabase.table('LogisticsVehicleJourney').delete().eq('JourneyID', params['JourneyID']).execute()
+            return response.data
         except Exception as e:
             return e
