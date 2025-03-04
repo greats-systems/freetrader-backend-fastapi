@@ -158,3 +158,23 @@ class LogisticsVehicleJourney(BaseModel):
     Destination: str
     CurrentLocationLat: float
     CurrentLocationLong: float
+    
+class WeatherForecast(BaseModel):
+    City: str
+    Region: str
+    Country: str
+    LocalTime: date
+    LastUpdate: date
+    Temperature: float
+    IsDay: bool
+    Description: str
+    WindSpeed: float
+    WindDegree: float
+    WindDirection: str
+    AtmosphericPressure: float
+    RainfallAmount: float
+    Humidity: int
+    CloudCover: int
+    HeatIndex: float
+    UltraViolet: int
+    WindIntensity: int

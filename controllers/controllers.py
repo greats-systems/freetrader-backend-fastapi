@@ -861,3 +861,78 @@ class LogisticsVehicleJourneyController:
             return data
         except Exception as e:
             return e
+        
+
+class WeatherForecastController:
+    def createWeatherForecast(weatherforecast: WeatherForecast):
+        try:
+            supabase.table('WeatherForecast').insert({
+            'City': weatherforecast.City,
+            'Region': weatherforecast.Region,
+            'Country': weatherforecast.Country,
+            'LocalTime': weatherforecast.LocalTime,
+            'LastUpdate': weatherforecast.LastUpdate,
+            'Temperature': weatherforecast.Temperature,
+            'IsDay': weatherforecast.IsDay,
+            'Description': weatherforecast.Description,
+            'WindSpeed': weatherforecast.WindSpeed,
+            'WindDegree': weatherforecast.WindDegree,
+            'WindDirection': weatherforecast.WindDirection,
+            'AtmosphericPressure': weatherforecast.AtmosphericPressure,
+            'RainfallAmount': weatherforecast.RainfallAmount,
+            'Humidity': weatherforecast.Humidity,
+            'CloudCover': weatherforecast.CloudCover,
+            'HeatIndex': weatherforecast.HeatIndex,
+            'UltraViolet': weatherforecast.UltraViolet,
+            'WindIntensity': weatherforecast.WindIntensity
+        }).execute()
+            return 'WeatherForecast created successfully!'
+        except Exception as e:
+            return e
+
+    def getWeatherForecasts():
+        try:
+            data = supabase.from_('WeatherForecast').select('*').order(column='LocalTime').execute()
+            return data
+        except Exception as e:
+            return e
+
+    def getWeatherForecastByDate(params):
+        try:
+            data = supabase.from_('WeatherForecast').select('*').eq('LocalTime', params['date']).execute()
+            return data
+        except Exception as e:
+            return e
+
+    def updateWeatherForecast(weatherforecast: WeatherForecast):
+        try:
+            supabase.from_('WeatherForecast').update({
+                'City': weatherforecast.City,
+                'Region': weatherforecast.Region,
+                'Country': weatherforecast.Country,
+                'LocalTime': weatherforecast.LocalTime,
+                'LastUpdate': weatherforecast.LastUpdate,
+                'Temperature': weatherforecast.Temperature,
+                'IsDay': weatherforecast.IsDay,
+                'Description': weatherforecast.Description,
+                'WindSpeed': weatherforecast.WindSpeed,
+                'WindDegree': weatherforecast.WindDegree,
+                'WindDirection': weatherforecast.WindDirection,
+                'AtmosphericPressure': weatherforecast.AtmosphericPressure,
+                'RainfallAmount': weatherforecast.RainfallAmount,
+                'Humidity': weatherforecast.Humidity,
+                'CloudCover': weatherforecast.CloudCover,
+                'HeatIndex': weatherforecast.HeatIndex,
+                'UltraViolet': weatherforecast.UltraViolet,
+                'WindIntensity': weatherforecast.WindIntensity
+            }).eq('id', weatherforecast.id).execute()
+            return 'WeatherForecast updated successfully!'
+        except Exception as e:
+            return e
+
+    def deleteWeatherForecast(params):
+        try:
+            data = supabase.table('WeatherForecast').delete().eq('id', params['id']).execute()
+            return data
+        except Exception as e:
+            return e

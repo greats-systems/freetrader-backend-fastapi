@@ -248,3 +248,29 @@ def updateCropCertificate(cert: CropCertificate):
 def deleteCropCertificate(params: dict):
     response = CropCertificateController.deleteCropCertificate(params)
     return response
+
+# WeatherForecast
+@app.post('/forecasts')
+def createWeatherForecast(forecast: WeatherForecast):
+    response = WeatherForecastController.createWeatherForecast(forecast)
+    return response
+
+@app.get('/forecasts')
+def getWeatherForecasts():
+    response = WeatherForecastController.getWeatherForecasts()
+    return response
+
+@app.get('/forecast')
+def getWeatherForecastByDate(params: date):
+    response = WeatherForecastController.getWeatherForecastByDate(params)
+    return response
+
+@app.put('/forecast/update')
+def updateWeatherForecast(forecast: WeatherForecast):
+    response = WeatherForecastController.updateWeatherForecast(forecast)
+    return response
+
+@app.delete('/forecast/delete')
+def deleteWeatherForecast(params: id):
+    response = WeatherForecastController.deleteWeatherForecast(params)
+    return response
