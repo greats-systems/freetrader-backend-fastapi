@@ -99,7 +99,7 @@ async def createSpouse(spouse: FarmerSpouse):
     response = FarmerSpouseController.createFarmerSpouse(spouse)
     return response
 
-@app.get('farmers/spouses')
+@app.get('/farmers/spouses')
 async def getSpouses():
     response = FarmerSpouseController.getFarmersSpouses()
     return response

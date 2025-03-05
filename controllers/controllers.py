@@ -199,7 +199,7 @@ class FarmerSpouseController:
 
     def getFarmersSpouses():
         try:
-            response = supabase.table('FarmerSpouse').select('*').order(column='id').execute()
+            response = supabase.table('FarmerSpouse').select('*').execute()
             return response.data
         except Exception as e:
             return e
