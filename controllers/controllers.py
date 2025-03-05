@@ -33,23 +33,22 @@ class FarmerController:
             return e
 
     def getFarmers():
-        # supabase.from_('Farmer').select('*').order(column='id').execute()
         try:
-            response = supabase.from_('Farmer').select('*').order(column='id').execute()
+            response = supabase.table('Farmer').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getFarmerByID(params):
         try:
-            response = supabase.from_('Farmer').select('*').eq('FarmerID', params['FarmerID']).execute()
+            response = supabase.table('Farmer').select('*').eq('FarmerID', params['FarmerID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateFarmer(farmer: Farmer):
         try:
-            supabase.from_('Farmer').update({
+            supabase.table('Farmer').update({
                 'NationalID' : farmer.NationalID,
                 'Title' : farmer.Title,
                 'FirstName' : farmer.FirstName,
@@ -98,22 +97,21 @@ class FarmerNextOfKinController:
 
     def getFarmerNextOfKins():
         try:
-            response = supabase.from_('FarmerNextOfKin').select('*').order(column='id').execute()
+            response = supabase.table('FarmerNextOfKin').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getFarmerNextOfKinByID(params):
         try:
-            # print(params)
-            response = supabase.from_('FarmerNextOfKin').select('*').eq('NationalID', params['NationalID']).execute()
-            return response.data.response
+            response = supabase.table('FarmerNextOfKin').select('*').eq('NationalID', params['NationalID']).execute()
+            return response.data
         except Exception as e:
             return e
 
     def updateFarmerNextOfKin(farmernextofkin: FarmerNextOfKin):
         try:
-            supabase.from_('FarmerNextOfKin').update({
+            supabase.table('FarmerNextOfKin').update({
                 'FirstName' : farmernextofkin.FirstName,
                 'Surname' : farmernextofkin.Surname,
                 'Address' : farmernextofkin.Address,
@@ -150,21 +148,21 @@ class FarmerBankDetailsController:
 
     def getFarmerBankDetails():
         try:
-            response = supabase.from_('FarmerBankDetails').select('*').order(column='id').execute()
+            response = supabase.table('FarmerBankDetails').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getFarmerBankDetailsByID(params):
         try:
-            response = supabase.from_('FarmerBankDetails').select('*').eq('AccountNumber', params['AccountNumber']).execute()
+            response = supabase.table('FarmerBankDetails').select('*').eq('AccountNumber', params['AccountNumber']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateFarmerBankDetails(farmerbankdetails: FarmerBankDetails):
         try:
-            supabase.from_('FarmerBankDetails').update({
+            supabase.table('FarmerBankDetails').update({
                 'BankName' : farmerbankdetails.BankName,
                 'BranchName' : farmerbankdetails.BranchName,
                 'BranchCode' : farmerbankdetails.BranchCode,
@@ -201,21 +199,21 @@ class FarmerSpouseController:
 
     def getFarmersSpouses():
         try:
-            response = supabase.from_('FarmerSpouse').select('*').order(column='id').execute()
+            response = supabase.table('FarmerSpouse').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getFarmerSpouseByID(params):
         try:
-            response = supabase.from_('FarmerSpouse').select('*').eq('NationalID', params['NationalID']).execute()
+            response = supabase.table('FarmerSpouse').select('*').eq('NationalID', params['NationalID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateFarmerSpouse(farmerspouse: FarmerSpouse):
         try:
-            supabase.from_('FarmerSpouse').update({
+            supabase.table('FarmerSpouse').update({
                 'FirstName' : farmerspouse.FirstName,
                 'Surname' : farmerspouse.Surname,
                 'Address' : farmerspouse.Address,
@@ -261,21 +259,21 @@ class FarmerFacilityDetailsController:
 
     def getFarmerFacilityDetails():
         try:
-            response = supabase.from_('FarmerFacilityDetails').select('*').order(column='id').execute()
+            response = supabase.table('FarmerFacilityDetails').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getFarmerFacilityDetailsByID(params):
         try:
-            response = supabase.from_('FarmerFacilityDetails').select('*').eq('FarmID', params['FarmID']).execute()
+            response = supabase.table('FarmerFacilityDetails').select('*').eq('FarmID', params['FarmID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateFarmerFacilityDetails(farmerfacilitydetails: FarmerFacilityDetails):
         try:
-            supabase.from_('FarmerFacilityDetails').update({
+            supabase.table('FarmerFacilityDetails').update({
                 'FarmName' : farmerfacilitydetails.FarmName,
                 'PhysicalAddress' : farmerfacilitydetails.PhysicalAddress,
                 'TownCity' : farmerfacilitydetails.TownCity,
@@ -323,21 +321,21 @@ class FarmerFacilityCooperativeController:
 
     def getFarmerFacilityCooperatives():
         try:
-            response = supabase.from_('FarmerFacilityCooperative').select('*').order(column='id').execute()
+            response = supabase.table('FarmerFacilityCooperative').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getFarmerFacilityCooperativeByID(params):
         try:
-            response = supabase.from_('FarmerFacilityCooperative').select('*').eq('CooperativeID', params['CooperativeID']).execute()
+            response = supabase.table('FarmerFacilityCooperative').select('*').eq('CooperativeID', params['CooperativeID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateFarmerFacilityCooperative(farmerfacilitycooperative: FarmerFacilityCooperative):
         try:
-            supabase.from_('FarmerFacilityCooperative').update({
+            supabase.table('FarmerFacilityCooperative').update({
                 'CooperativeName' : farmerfacilitycooperative.CooperativeName,
                 'CooperativeLocation' : farmerfacilitycooperative.CooperativeLocation,
                 'AgriculturalSector' : farmerfacilitycooperative.AgriculturalSector,
@@ -364,8 +362,8 @@ class CropController:
             'CropID' : crop.CropID,
             'CropName' : crop.CropName,
             'Season' : crop.Season,
-            'GMBCertificateID' : crop.GMBCertificateID,
-            'ProductionReferenceID' : crop.ProductionReferenceID
+            'GMBCertificateID' : crop.CertificateID,
+            'ProductionReferenceID' : crop.ProductionReference
         }).execute()
             return 'Crop created successfully!'
         except Exception as e:
@@ -373,21 +371,21 @@ class CropController:
 
     def getCrops():
         try:
-            response = supabase.from_('Crop').select('*').order(column='id').execute()
+            response = supabase.table('Crop').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getCropByID(params):
         try:
-            response = supabase.from_('Crop').select('*').eq('CropID', params['CropID']).execute()
+            response = supabase.table('Crop').select('*').eq('CropID', params['CropID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateCrop(crop: Crop):
         try:
-            supabase.from_('Crop').update({
+            supabase.table('Crop').update({
                 'CropName' : crop.CropName,
                 'Season' : crop.Season,
                 'GMBCertificateID' : crop.GMBCertificateID,
@@ -420,21 +418,21 @@ class CropProductionController:
 
     def getCropProductions():
         try:
-            response = supabase.from_('CropProduction').select('*').order(column='id').execute()
+            response = supabase.table('CropProduction').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getCropProductionByID(params):
         try:
-            response = supabase.from_('CropProduction').select('*').eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
+            response = supabase.table('CropProduction').select('*').eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateCropProduction(cropproduction: CropProduction):
         try:
-            supabase.from_('CropProduction').update({
+            supabase.table('CropProduction').update({
                 'PlantingDate' : cropproduction.PlantingDate,
                 'HarvestDate' : cropproduction.HarvestDate,
                 'CropYield' : cropproduction.CropYield
@@ -470,21 +468,21 @@ class CropCertificateController:
 
     def getCropCertificates():
         try:
-            response = supabase.from_('CropCertificate').select('*').order(column='id').execute()
+            response = supabase.table('CropCertificate').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getCropCertificateByID(params):
         try:
-            response = supabase.from_('CropCertificate').select('*').eq('CertificateID', params['CertificateID']).execute()
+            response = supabase.table('CropCertificate').select('*').eq('CertificateID', params['CertificateID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateCropCertificate(cropcertificate: CropCertificate):
         try:
-            supabase.from_('CropCertificate').update({
+            supabase.table('CropCertificate').update({
                 'CertificateName' : cropcertificate.CertificateName,
                 'IssuedBy' : cropcertificate.IssuedBy,
                 'DateOfIssue' : cropcertificate.DateOfIssue,
@@ -520,21 +518,21 @@ class CertificateIssuerController:
 
     def getCertificateIssuers():
         try:
-            response = supabase.from_('CertificateIssuer').select('*').order(column='id').execute()
+            response = supabase.table('CertificateIssuer').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getCertificateIssuerByID(params):
         try:
-            response = supabase.from_('CertificateIssuer').select('*').eq('IssuerID', params['IssuerID']).execute()
+            response = supabase.table('CertificateIssuer').select('*').eq('IssuerID', params['IssuerID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateCertificateIssuer(certificateissuer: CertificateIssuer):
         try:
-            supabase.from_('CertificateIssuer').update({
+            supabase.table('CertificateIssuer').update({
                 'IssuerName' : certificateissuer.IssuerName,
                 'AllowedToExport' : certificateissuer.AllowedToExport,
                 'ContractID' : certificateissuer.ContractID
@@ -570,21 +568,21 @@ class ContractController:
 
     def getContracts():
         try:
-            response = supabase.from_('Contract').select('*').order(column='id').execute()
+            response = supabase.table('Contract').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getContractByID(params):
         try:
-            response = supabase.from_('Contract').select('*').eq('ContractID', params['ContractID']).execute()
+            response = supabase.table('Contract').select('*').eq('ContractID', params['ContractID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateContract(contract: Contract):
         try:
-            supabase.from_('Contract').update({
+            supabase.table('Contract').update({
                 'ContractTitle' : contract.ContractTitle,
                 'ContractDescription' : contract.ContractDescription,
                 'ContractValue' : contract.ContractValue,
@@ -622,21 +620,21 @@ class ContractBidController:
 
     def getContractBids():
         try:
-            response = supabase.from_('ContractBid').select('*').order(column='id').execute()
+            response = supabase.table('ContractBid').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getContractBidByID(params):
         try:
-            response = supabase.from_('ContractBid').select('*').eq('BidID', params['BidID']).execute()
+            response = supabase.table('ContractBid').select('*').eq('BidID', params['BidID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateContractBid(contractbid: ContractBid):
         try:
-            supabase.from_('ContractBid').update({
+            supabase.table('ContractBid').update({
                 'ContractID' : contractbid.ContractID,
                 'BidOpeningDate' : contractbid.BidOpeningDate,
                 'BidStatus' : contractbid.BidStatus,
@@ -673,21 +671,21 @@ class LogisticsCompanyController:
 
     def getLogisticsCompanys():
         try:
-            response = supabase.from_('LogisticsCompany').select('*').order(column='id').execute()
+            response = supabase.table('LogisticsCompany').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getLogisticsCompanyByID(params):
         try:
-            response = supabase.from_('LogisticsCompany').select('*').eq('CompanyID', params['CompanyID']).execute()
+            response = supabase.table('LogisticsCompany').select('*').eq('CompanyID', params['CompanyID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateLogisticsCompany(logisticscompany: LogisticsCompany):
         try:
-            supabase.from_('LogisticsCompany').update({
+            supabase.table('LogisticsCompany').update({
                 'CompanyName' : logisticscompany.CompanyName,
                 'CompanyPhysicalAddress' : logisticscompany.CompanyPhysicalAddress,
                 'ContactNumber' : logisticscompany.ContactNumber,
@@ -723,21 +721,21 @@ class LogisticsCompanyDriverController:
 
     def getLogisticsCompanyDrivers():
         try:
-            response = supabase.from_('LogisticsCompanyDriver').select('*').order(column='id').execute()
+            response = supabase.table('LogisticsCompanyDriver').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getLogisticsCompanyDriverByID(params):
         try:
-            response = supabase.from_('LogisticsCompanyDriver').select('*').eq('DriverID', params['DriverID']).execute()
+            response = supabase.table('LogisticsCompanyDriver').select('*').eq('DriverID', params['DriverID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateLogisticsCompanyDriver(logisticscompanydriver: LogisticsCompanyDriver):
         try:
-            supabase.from_('LogisticsCompanyDriver').update({
+            supabase.table('LogisticsCompanyDriver').update({
                 'FirstName' : logisticscompanydriver.FirstName,
                 'Surname' : logisticscompanydriver.Surname,
                 'LicenseNumber' : logisticscompanydriver.LicenseNumber,
@@ -776,21 +774,21 @@ class LogisticsVehicleController:
 
     def getLogisticsVehicles():
         try:
-            response = supabase.from_('LogisticsVehicle').select('*').order(column='id').execute()
+            response = supabase.table('LogisticsVehicle').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getLogisticsVehicleByID(params):
         try:
-            response = supabase.from_('LogisticsVehicle').select('*').eq('VehicleID', params['VehicleID']).execute()
+            response = supabase.table('LogisticsVehicle').select('*').eq('VehicleID', params['VehicleID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateLogisticsVehicle(logisticsvehicle: LogisticsVehicle):
         try:
-            supabase.from_('LogisticsVehicle').update({
+            supabase.table('LogisticsVehicle').update({
                 'RegistrationNumber' : logisticsvehicle.RegistrationNumber,
                 'Make' : logisticsvehicle.Make,
                 'Model' : logisticsvehicle.Model,
@@ -831,21 +829,21 @@ class LogisticsVehicleJourneyController:
 
     def getLogisticsVehicleJourneys():
         try:
-            response = supabase.from_('LogisticsVehicleJourney').select('*').order(column='id').execute()
+            response = supabase.table('LogisticsVehicleJourney').select('*').order(column='id').execute()
             return response.data
         except Exception as e:
             return e
 
     def getLogisticsVehicleJourneyByID(params):
         try:
-            response = supabase.from_('LogisticsVehicleJourney').select('*').eq('JourneyID', params['JourneyID']).execute()
+            response = supabase.table('LogisticsVehicleJourney').select('*').eq('JourneyID', params['JourneyID']).execute()
             return response.data
         except Exception as e:
             return e
 
     def updateLogisticsVehicleJourney(logisticsvehiclejourney: LogisticsVehicleJourney):
         try:
-            supabase.from_('LogisticsVehicleJourney').update({
+            supabase.table('LogisticsVehicleJourney').update({
                 'VehicleID' : logisticsvehiclejourney.VehicleID,
                 'DriverID' : logisticsvehiclejourney.DriverID,
                 'Origin' : logisticsvehiclejourney.Origin,
