@@ -17,27 +17,27 @@ async def root():
 
 # Farmer
 @app.post('/farmer/create')
-def createFarmer(farmer: Farmer):
+async def createFarmer(farmer: Farmer):
     response = FarmerController.createFarmer(farmer)
     return response
 
 @app.get('/farmers')
-def getFarmers():
+async def getFarmers():
     response = FarmerController.getFarmers()
     return response
 
 @app.get('/farmer')
-def getFarmerByID(params: dict):
+async def getFarmerByID(params: dict):
     response = FarmerController.getFarmerByID(params)
     return response
 
 @app.put('/farmer/update')
-def updateFarmer(farmer: Farmer):
+async def updateFarmer(farmer: Farmer):
     response = FarmerController.updateFarmer(farmer)
     return response
 
 @app.delete('/farmer/delete')
-def deleteFarmer(params: dict):
+async def deleteFarmer(params: dict):
     response = FarmerController.deleteFarmer(params)
     return response
 
@@ -50,20 +50,20 @@ async def createFarmerNextOfKin(farmernextofkin: FarmerNextOfKin):
 @app.get('/farmer/next-of-kins')
 async def getNOKs():
     response = FarmerNextOfKinController.getFarmerNextOfKins()
-    return response.data
+    return response
 
 @app.get('/farmer/next-of-kin')
-def getNOKByID(params: dict):
+async def getNOKByID(params: dict):
     response = FarmerNextOfKinController.getFarmerNextOfKinByID(params)
     return response
 
 @app.put('/farmer/next-of-kin/update')
-def updateNOK(nok: FarmerNextOfKin):
+async def updateNOK(nok: FarmerNextOfKin):
     response = FarmerNextOfKinController.updateFarmerNextOfKin(nok)
     return response
 
 @app.delete('/farmer/next-of-kin/delete')
-def deleteNOK(params: dict):
+async def deleteNOK(params: dict):
     response = FarmerNextOfKinController.deleteFarmerNextOfKin(params)
     return response
 
@@ -105,33 +105,33 @@ def getFarmerSpouses():
     return response
 
 @app.get('/farmer/spouse')
-def getSpouseByID(params: dict):
+async def getSpouseByID(params: dict):
     response = FarmerSpouseController.getFarmerSpouseByID(params)
     return response
 
 @app.put('/farmer/spouse/update')
-def updateSpouse(spouse: FarmerSpouse):
+async def updateSpouse(spouse: FarmerSpouse):
     response = FarmerSpouseController.updateFarmerSpouse(spouse)
     return response
 
 @app.delete('/farmer/spouse/delete')
-def deleteSpouse(params: dict):
+async def deleteSpouse(params: dict):
     response = FarmerSpouseController.deleteFarmerSpouse(params)
     return response
 
 # FarmerFacilityDetails
 @app.post('/farm/create')
-def createFarm(farm: FarmerFacilityDetails):
+async def createFarm(farm: FarmerFacilityDetails):
     response = FarmerFacilityDetailsController.createFarmerFacilityDetails(farm)
     return response
 
 @app.get('/farms')
-def getFarms():
+async def getFarms():
     response = FarmerFacilityDetailsController.getFarmerFacilityDetails()
     return response
 
 @app.get('/farm')
-def getFarmByID(params: dict):
+async def getFarmByID(params: dict):
     response = FarmerFacilityDetailsController.getFarmerFacilityDetailsByID(params)
     return response
 
@@ -152,48 +152,48 @@ def createFarmerFacilityCooperative(farmerfacilitycooperative: FarmerFacilityCoo
     return response
 
 @app.get('/cooperatives')
-def getCooperatives():
+async def getCooperatives():
     response = FarmerFacilityCooperativeController.getFarmerFacilityCooperatives()
     return response
 
 @app.get('/cooperative')
-def getCooperativeByID(params: dict):
+async def getCooperativeByID(params: dict):
     response = FarmerFacilityCooperativeController.getFarmerFacilityCooperativeByID(params)
     return response
 
 @app.put('/cooperative/update')
-def updateCooperative(coop: FarmerFacilityCooperative):
+async def updateCooperative(coop: FarmerFacilityCooperative):
     response = FarmerFacilityCooperativeController.updateFarmerFacilityCooperative(coop)
     return response
 
 @app.delete('/cooperative/delete')
-def deleteCooperative(params: dict):
+async def deleteCooperative(params: dict):
     response = FarmerFacilityCooperativeController.deleteFarmerFacilityCooperative(params)
     return response
 
 # Crop
 @app.post('/crop/create')
-def createCrop(crop: Crop):
+async def createCrop(crop: Crop):
     response = CropController.createCrop(crop)
     return response
 
 @app.get('/crops')
-def getCrops():
+async def getCrops():
     response = CropController.getCrops()
     return response
 
 @app.get('/crop')
-def getCropByID(params: dict):
+async def getCropByID(params: dict):
     response = CropController.getCropByID(params)
     return response
 
 @app.put('/crop/update')
-def updateCrop(crop: Crop):
+async def updateCrop(crop: Crop):
     response = CropController.updateCrop(crop)
     return response
 
 @app.delete('/crop/delete')
-def deleteCrop(params: dict):
+async def deleteCrop(params: dict):
     response = CropController.deleteCrop(params)
     return response
 
@@ -204,22 +204,22 @@ def createCropProduction(cropproduction: CropProduction):
     return response
 
 @app.get('/crop-productions')
-def getCropProductions():
+async def getCropProductions():
     response = CropProductionController.getCropProductions()
     return response
 
 @app.get('/crop-production')
-def getCropProductionByID(params: dict):
+async def getCropProductionByID(params: dict):
     response = CropProductionController.getCropProductionByID(params)
     return response
 
 @app.put('/crop-production/update')
-def updateCropProduction(prod: CropProduction):
+async def updateCropProduction(prod: CropProduction):
     response = CropProductionController.updateCropProduction(prod)
     return response
 
 @app.delete('/crop-production/delete')
-def deleteCropProduction(params: dict):
+async def deleteCropProduction(params: dict):
     response = CropProductionController.deleteCropProduction(params)
     return response
 
@@ -230,22 +230,22 @@ def createCropCertificate(cropcertificate: CropCertificate):
     return response
 
 @app.get('/crop-certificates')
-def getCropCertificates():
+async def getCropCertificates():
     response = CropCertificateController.getCropCertificates()
     return response
 
 @app.get('/crop-certificate')
-def getCropCertificateByID(params: dict):
+async def getCropCertificateByID(params: dict):
     response = CropCertificateController.getCropCertificateByID(params)
     return response
 
 @app.put('/crop-certificate/update')
-def updateCropCertificate(cert: CropCertificate):
+async def updateCropCertificate(cert: CropCertificate):
     response = CropCertificateController.updateCropCertificate(cert)
     return response
 
 @app.delete('/crop-certificate/delete')
-def deleteCropCertificate(params: dict):
+async def deleteCropCertificate(params: dict):
     response = CropCertificateController.deleteCropCertificate(params)
     return response
 
