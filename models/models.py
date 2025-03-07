@@ -54,8 +54,8 @@ class FarmerFacilityDetails(BaseModel):
     TownCity: str
     District: str
     Province: str
-    CoordinatesLat: float
-    CoordinatesLong: float
+    CoordinatesLat: str
+    CoordinatesLong: str
     LandOwnership: str
     LandSize: int
     LandType: str
@@ -79,24 +79,24 @@ class Crop(BaseModel):
     CropID: str
     CropName: str
     Season: str
-    CertificateID: str
-    ProductionReference: str
+    GMBCertificateID: str
+    ProductionReferenceID: str
 
 class CropProduction(BaseModel):
     ProductionReferenceID: str
-    PlantingDate: date
-    HarvestDate: date
+    PlantingDate: str
+    HarvestDate: str
     CropYield: float
 
 class CropCertificate(BaseModel):
     CertificateID: str
     CertificateName: str
     IssuedBy: str
-    DateOfIssue: date
+    DateOfIssue: str
     MarketValueOnDateOfIssue: float
     CropGrade: str
-    DateOfExpiry: date
-    MarketValueOfDateOfExpiry: float
+    DateOfExpiry: str
+    MarketValueOnDateOfExpiry: float
 
 class CertificateIssuer(BaseModel):
     IssuerID: str
@@ -109,18 +109,18 @@ class Contract(BaseModel):
     ContractTitle: str
     ContractDescription: str
     ContractValue: float
-    TenderDate: date
-    ClosingDate: date
-    AwardDate: date
+    TenderDate: str
+    ClosingDate: str
+    AwardDate: str
     AwardedTo: str
 
 class ContractBid(BaseModel):
     BidID: str
     ContractID: str
-    BidOpeningDate: date
+    BidOpeningDate: str
     BidStatus: str
     BidAmount: float
-    BidClosingDate: date
+    BidClosingDate: str
 
 class LogisticsCompany(BaseModel):
     CompanyID: str
@@ -136,7 +136,7 @@ class LogisticsCompanyDriver(BaseModel):
     FirstName: str
     Surname: str
     LicenseNumber: str
-    DateOfLastRoadTest: date
+    DateOfLastRoadTest: str
 
 class LogisticsVehicle(BaseModel):
     VehicleID: str
@@ -145,8 +145,8 @@ class LogisticsVehicle(BaseModel):
     Model: str
     NetVehicleMass: int
     GrossVehicleMass: int
-    LastMaintenanceDate: date
-    NextMaintenenceDate: date
+    LastMaintenanceDate: str
+    NextMaintenanceDate: str
     JourneyID: str
     DriverID: str
 
@@ -159,22 +159,16 @@ class LogisticsVehicleJourney(BaseModel):
     CurrentLocationLat: float
     CurrentLocationLong: float
     
-class WeatherForecast(BaseModel):
-    City: str
-    Region: str
-    Country: str
-    LocalTime: date
-    LastUpdate: date
-    Temperature: float
-    IsDay: bool
-    Description: str
-    WindSpeed: float
-    WindDegree: float
-    WindDirection: str
-    AtmosphericPressure: float
-    RainfallAmount: float
-    Humidity: int
-    CloudCover: int
-    HeatIndex: float
-    UltraViolet: int
-    WindIntensity: int
+class GMBCertificate(BaseModel):
+    GMBCertificateID: str
+    IssuedBy: str
+    DateOfIssue: str
+    MarketValueOnDateOfIssue: float
+    CropGrade: str
+    DateOfExpiry: str
+    MarketValueOnDateOfExpiry: float
+    
+class Commodity(BaseModel):
+    CommodityID: str
+    CommodityName: str
+    CommodityProducerPrice: float

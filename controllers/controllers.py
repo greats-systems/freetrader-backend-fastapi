@@ -180,7 +180,7 @@ class FarmerBankDetailsController:
     def deleteFarmerBankDetails(params):
         try:
             data = supabase.table('FarmerBankDetails').delete().eq('AccountNumber', params['AccountNumber']).execute()
-            return data
+            return "FarmerBankDetails deleted successfully!"
         except Exception as e:
             return e
 
@@ -199,9 +199,9 @@ class FarmerSpouseController:
         except Exception as e:
             return e
 
-    def getFarmersSpouses():
+    def getFarmerSpouses():
         try:
-            data = supabase.from_('FarmerSpouse').select('*').order(column='id').execute()
+            data = supabase.table('FarmerSpouse').select('*').execute()
             return data
         except Exception as e:
             return e
@@ -228,7 +228,7 @@ class FarmerSpouseController:
     def deleteFarmerSpouse(params):
         try:
             data = supabase.table('FarmerSpouse').delete().eq('NationalID', params['NationalID']).execute()
-            return data
+            return "FarmerSpouse deleted successfully!"
         except Exception as e:
             return e
 
@@ -243,7 +243,8 @@ class FarmerFacilityDetailsController:
             'TownCity' : farmerfacilitydetails.TownCity,
             'District' : farmerfacilitydetails.District,
             'Province' : farmerfacilitydetails.Province,
-            'Coordinates' : farmerfacilitydetails.Coordinates,
+            'CoordinatesLat' : farmerfacilitydetails.CoordinatesLat,
+            'CoordinatesLong' : farmerfacilitydetails.CoordinatesLong,
             'LandOwnership' : farmerfacilitydetails.LandOwnership,
             'LandSize' : farmerfacilitydetails.LandSize,
             'LandType' : farmerfacilitydetails.LandType,
@@ -280,7 +281,8 @@ class FarmerFacilityDetailsController:
                 'TownCity' : farmerfacilitydetails.TownCity,
                 'District' : farmerfacilitydetails.District,
                 'Province' : farmerfacilitydetails.Province,
-                'Coordinates' : farmerfacilitydetails.Coordinates,
+                'CoordinatesLat' : farmerfacilitydetails.CoordinatesLat,
+                'CoordinatesLong' : farmerfacilitydetails.CoordinatesLong,
                 'LandOwnership' : farmerfacilitydetails.LandOwnership,
                 'LandSize' : farmerfacilitydetails.LandSize,
                 'LandType' : farmerfacilitydetails.LandType,
@@ -298,7 +300,7 @@ class FarmerFacilityDetailsController:
     def deleteFarmerFacilityDetails(params):
         try:
             data = supabase.table('FarmerFacilityDetails').delete().eq('FarmID', params['FarmID']).execute()
-            return data
+            return 'FarmerFacilityDetails deleted successfully!'
         except Exception as e:
             return e
 
@@ -350,7 +352,7 @@ class FarmerFacilityCooperativeController:
     def deleteFarmerFacilityCooperative(params):
         try:
             data = supabase.table('FarmerFacilityCooperative').delete().eq('CooperativeID', params['CooperativeID']).execute()
-            return data
+            return "FarmerFacilityCooperative deleted successfully!"
         except Exception as e:
             return e
 
@@ -358,16 +360,16 @@ class FarmerFacilityCooperativeController:
 class CropController:
     def createCrop(crop: Crop):
         try:
-            supabase.table('Crop').insert({
-            'CropID' : crop.CropID,
-            'CropName' : crop.CropName,
-            'Season' : crop.Season,
-            'GMBCertificateID' : crop.GMBCertificateID,
-            'ProductionReferenceID' : crop.ProductionReferenceID
-        }).execute()
-            return 'Crop created successfully!'
+             supabase.from_('Crop').insert({
+             'CropID' : crop.CropID,
+             'CropName' : crop.CropName,
+             'Season' : crop.Season,
+             'GMBCertificateID' : crop.GMBCertificateID,
+             'ProductionReferenceID' : crop.ProductionReferenceID
+         }).execute()
+             return 'Crop created successfully!'
         except Exception as e:
-            return e
+             return e
 
     def getCrops():
         try:
@@ -386,6 +388,7 @@ class CropController:
     def updateCrop(crop: Crop):
         try:
             supabase.from_('Crop').update({
+                'CropID' : crop.CropID,
                 'CropName' : crop.CropName,
                 'Season' : crop.Season,
                 'GMBCertificateID' : crop.GMBCertificateID,
@@ -398,7 +401,7 @@ class CropController:
     def deleteCrop(params):
         try:
             data = supabase.table('Crop').delete().eq('CropID', params['CropID']).execute()
-            return data
+            return "Crop deleted successfully!"
         except Exception as e:
             return e
 
@@ -444,7 +447,7 @@ class CropProductionController:
     def deleteCropProduction(params):
         try:
             data = supabase.table('CropProduction').delete().eq('ProductionReferenceID', params['ProductionReferenceID']).execute()
-            return data
+            return "CropProduction deleted successfully!"
         except Exception as e:
             return e
 
@@ -498,7 +501,7 @@ class CropCertificateController:
     def deleteCropCertificate(params):
         try:
             data = supabase.table('CropCertificate').delete().eq('CertificateID', params['CertificateID']).execute()
-            return data
+            return 'CropCertificate deleted successfully!'
         except Exception as e:
             return e
 
@@ -506,7 +509,7 @@ class CropCertificateController:
 class CertificateIssuerController:
     def createCertificateIssuer(certificateissuer: CertificateIssuer):
         try:
-            supabase.table('CertificateIssuer').insert({
+            supabase.from_('CertificateIssuer').insert({
             'IssuerID' : certificateissuer.IssuerID,
             'IssuerName' : certificateissuer.IssuerName,
             'AllowedToExport' : certificateissuer.AllowedToExport,
@@ -544,7 +547,7 @@ class CertificateIssuerController:
     def deleteCertificateIssuer(params):
         try:
             data = supabase.table('CertificateIssuer').delete().eq('IssuerID', params['IssuerID']).execute()
-            return data
+            return 'CertificateIssuer deleted successfully!'
         except Exception as e:
             return e
 
@@ -598,7 +601,7 @@ class ContractController:
     def deleteContract(params):
         try:
             data = supabase.table('Contract').delete().eq('ContractID', params['ContractID']).execute()
-            return data
+            return "Contract deleted successfully!"
         except Exception as e:
             return e
 
@@ -648,7 +651,7 @@ class ContractBidController:
     def deleteContractBid(params):
         try:
             data = supabase.table('ContractBid').delete().eq('BidID', params['BidID']).execute()
-            return data
+            return "ContractBid deleted successfully!"
         except Exception as e:
             return e
 
@@ -700,7 +703,7 @@ class LogisticsCompanyController:
     def deleteLogisticsCompany(params):
         try:
             data = supabase.table('LogisticsCompany').delete().eq('CompanyID', params['CompanyID']).execute()
-            return data
+            return "LogisticsCompany deleted successfully!"
         except Exception as e:
             return e
 
@@ -748,7 +751,7 @@ class LogisticsCompanyDriverController:
     def deleteLogisticsCompanyDriver(params):
         try:
             data = supabase.table('LogisticsCompanyDriver').delete().eq('DriverID', params['DriverID']).execute()
-            return data
+            return "LogisticsCompanyDriver deleted successfully!"
         except Exception as e:
             return e
 
@@ -806,7 +809,7 @@ class LogisticsVehicleController:
     def deleteLogisticsVehicle(params):
         try:
             data = supabase.table('LogisticsVehicle').delete().eq('VehicleID', params['VehicleID']).execute()
-            return data
+            return "LogisticsVehicle deleted successfully!"
         except Exception as e:
             return e
 
@@ -858,81 +861,103 @@ class LogisticsVehicleJourneyController:
     def deleteLogisticsVehicleJourney(params):
         try:
             data = supabase.table('LogisticsVehicleJourney').delete().eq('JourneyID', params['JourneyID']).execute()
+            return "LogisticsVehicleJourney deleted successfully!"
+        except Exception as e:
+            return e
+        
+        
+#GMB Certificate
+class GMBCertificateController:
+    def createGMBCertificate(gmbcertificate: GMBCertificate):
+        try:
+            supabase.table('GMBCertificate').insert({
+            'GMBCertificateID' : gmbcertificate.GMBCertificateID,
+            'IssuedBy' : gmbcertificate.IssuedBy,
+            'DateOfIssue' : gmbcertificate.DateOfIssue,
+            'MarketValueOnDateOfIssue' : gmbcertificate.MarketValueOnDateOfIssue,
+            'CropGrade' : gmbcertificate.CropGrade,
+            'DateOfExpiry' : gmbcertificate.DateOfExpiry,
+            'MarketValueOnDateOfExpiry' : gmbcertificate.MarketValueOnDateOfExpiry
+        }).execute()
+            return 'GMBCertificate created successfully!'
+        except Exception as e:
+            return e
+        
+    def getGMBCertificates():
+        try:
+            data = supabase.from_('GMBCertificate').select('*').order(column='id').execute()
             return data
         except Exception as e:
             return e
         
-
-class WeatherForecastController:
-    def createWeatherForecast(weatherforecast: WeatherForecast):
+    def getGMBCertificateByID(params):
         try:
-            supabase.table('WeatherForecast').insert({
-            'City': weatherforecast.City,
-            'Region': weatherforecast.Region,
-            'Country': weatherforecast.Country,
-            'LocalTime': weatherforecast.LocalTime,
-            'LastUpdate': weatherforecast.LastUpdate,
-            'Temperature': weatherforecast.Temperature,
-            'IsDay': weatherforecast.IsDay,
-            'Description': weatherforecast.Description,
-            'WindSpeed': weatherforecast.WindSpeed,
-            'WindDegree': weatherforecast.WindDegree,
-            'WindDirection': weatherforecast.WindDirection,
-            'AtmosphericPressure': weatherforecast.AtmosphericPressure,
-            'RainfallAmount': weatherforecast.RainfallAmount,
-            'Humidity': weatherforecast.Humidity,
-            'CloudCover': weatherforecast.CloudCover,
-            'HeatIndex': weatherforecast.HeatIndex,
-            'UltraViolet': weatherforecast.UltraViolet,
-            'WindIntensity': weatherforecast.WindIntensity
+            data = supabase.from_('GMBCertificate').select('*').eq('GMBCertificateID', params['GMBCertificateID']).execute()
+            return data
+        except Exception as e:
+            return e
+        
+    def updateGMBCertificate(gmbcertificate: GMBCertificate):
+        try:
+            supabase.from_('GMBCertificate').update({
+                'IssuedBy' : gmbcertificate.IssuedBy,
+                'DateOfIssue' : gmbcertificate.DateOfIssue,
+                'MarketValueOnDateOfIssue' : gmbcertificate.MarketValueOnDateOfIssue,
+                'CropGrade' : gmbcertificate.CropGrade,
+                'DateOfExpiry' : gmbcertificate.DateOfExpiry,
+                'MarketValueOnDateOfExpiry' : gmbcertificate.MarketValueOnDateOfExpiry
+            }).eq('GMBCertificateID', gmbcertificate.GMBCertificateID).execute()
+            return 'GMBCertificate updated successfully!'
+        except Exception as e:
+            return e
+        
+    def deleteGMBCertificate(params):
+        try:
+            data = supabase.table('GMBCertificate').delete().eq('GMBCertificateID', params['GMBCertificateID']).execute()
+            return "GMBCertificate deleted successfully!"
+        except Exception as e:
+            return e
+        
+# Commodity
+class CommodityController:
+    def createCommodity(commodity: Commodity):
+        try:
+            supabase.table('Commodity').insert({
+            'CommodityID' : commodity.CommodityID,
+            'CommodityName' : commodity.CommodityName,
+            'CommodityProducerPrice' : commodity.CommodityProducerPrice,
         }).execute()
-            return 'WeatherForecast created successfully!'
+            return 'Commodity created successfully!'
         except Exception as e:
             return e
-
-    def getWeatherForecasts():
+        
+    def getCommodities():
         try:
-            data = supabase.from_('WeatherForecast').select('*').order(column='LocalTime').execute()
+            data = supabase.from_('Commodity').select('*').order(column='id').execute()
             return data
         except Exception as e:
             return e
-
-    def getWeatherForecastByDate(params):
+        
+    def getCommodityByID(params):
         try:
-            data = supabase.from_('WeatherForecast').select('*').eq('LocalTime', params['date']).execute()
+            data = supabase.from_('Commodity').select('*').eq('CommodityID', params['CommodityID']).execute()
             return data
         except Exception as e:
             return e
-
-    def updateWeatherForecast(weatherforecast: WeatherForecast):
+        
+    def updateCommodity(commodity: Commodity):
         try:
-            supabase.from_('WeatherForecast').update({
-                'City': weatherforecast.City,
-                'Region': weatherforecast.Region,
-                'Country': weatherforecast.Country,
-                'LocalTime': weatherforecast.LocalTime,
-                'LastUpdate': weatherforecast.LastUpdate,
-                'Temperature': weatherforecast.Temperature,
-                'IsDay': weatherforecast.IsDay,
-                'Description': weatherforecast.Description,
-                'WindSpeed': weatherforecast.WindSpeed,
-                'WindDegree': weatherforecast.WindDegree,
-                'WindDirection': weatherforecast.WindDirection,
-                'AtmosphericPressure': weatherforecast.AtmosphericPressure,
-                'RainfallAmount': weatherforecast.RainfallAmount,
-                'Humidity': weatherforecast.Humidity,
-                'CloudCover': weatherforecast.CloudCover,
-                'HeatIndex': weatherforecast.HeatIndex,
-                'UltraViolet': weatherforecast.UltraViolet,
-                'WindIntensity': weatherforecast.WindIntensity
-            }).eq('id', weatherforecast.id).execute()
-            return 'WeatherForecast updated successfully!'
+            supabase.from_('Commodity').update({
+                'CommodityName' : commodity.CommodityName,
+                'CommodityProducerPrice' : commodity.CommodityProducerPrice,
+            }).eq('CommodityID', commodity.CommodityID).execute()
+            return 'Commodity updated successfully!'
         except Exception as e:
             return e
-
-    def deleteWeatherForecast(params):
+        
+    def deleteCommodity(params):
         try:
-            data = supabase.table('WeatherForecast').delete().eq('id', params['id']).execute()
-            return data
+            data = supabase.table('Commodity').delete().eq('CommodityID', params['CommodityID']).execute()
+            return "Commodity deleted successfully!"
         except Exception as e:
             return e

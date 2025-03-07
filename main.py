@@ -43,8 +43,8 @@ def deleteFarmer(params: dict):
 
 # Farmer's next of kin
 @app.post('/farmer/next-of-kin/create')
-async def createNOK(nok: FarmerNextOfKin):
-    response = FarmerNextOfKinController.createFarmerNextOfKin(nok)
+async def createFarmerNextOfKin(farmernextofkin: FarmerNextOfKin):
+    response = FarmerNextOfKinController.createFarmerNextOfKin(farmernextofkin)
     return response
 
 @app.get('/farmer/next-of-kins')
@@ -69,39 +69,39 @@ def deleteNOK(params: dict):
 
 # Farmer's bank details
 @app.post('/farmer/bank-details/create')
-def createBankDetails(bankdetails: FarmerBankDetails):
+def createFarmerBankDetails(bankdetails: FarmerBankDetails):
     response = FarmerBankDetailsController.createFarmerBankDetails(bankdetails)
     return response
 
-@app.get('/farmers/bank-details')
-def getBankDetails():
+@app.get('/farmer/bank-details')
+def getFarmerBankDetails():
     response = FarmerBankDetailsController.getFarmerBankDetails()
     return response
 
-@app.get('/farmer/bank-details')
+@app.get('/farmer/bank-detail')
 def getBankDetailsByID(params: dict):
     response = FarmerBankDetailsController.getFarmerBankDetailsByID(params)
     return response
 
 @app.put('/farmer/bank-detail/update')
-def updateBankDetails(bankdetails: FarmerBankDetails):
-    response = FarmerBankDetailsController.updateFarmerBankDetails(bankdetails)
+def updateFarmerBankDetails(farmerbankdetails: FarmerBankDetails):
+    response = FarmerBankDetailsController.updateFarmerBankDetails(farmerbankdetails)
     return response
 
 @app.delete('/farmer/bank-detail/delete')
-def deleteBankDetails(params: dict):
+def deleteFarmerBankDetails(params: dict):
     response = FarmerBankDetailsController.deleteFarmerBankDetails(params)
     return response
 
 # Farmer's spouse
 @app.post('/farmer/spouse/create')
-def createSpouse(spouse: FarmerSpouse):
-    response = FarmerSpouseController.createFarmerSpouse(spouse)
+def createFarmerSpouse(farmerspouse: FarmerSpouse):
+    response = FarmerSpouseController.createFarmerSpouse(farmerspouse)
     return response
 
-@app.get('farmers/spouses')
-def getSpouses():
-    response = FarmerSpouseController.getFarmersSpouses()
+@app.get('/farmer/spouses')
+def getFarmerSpouses():
+    response = FarmerSpouseController.getFarmerSpouses()
     return response
 
 @app.get('/farmer/spouse')
@@ -119,7 +119,7 @@ def deleteSpouse(params: dict):
     response = FarmerSpouseController.deleteFarmerSpouse(params)
     return response
 
-# Farm
+# FarmerFacilityDetails
 @app.post('/farm/create')
 def createFarm(farm: FarmerFacilityDetails):
     response = FarmerFacilityDetailsController.createFarmerFacilityDetails(farm)
@@ -136,19 +136,19 @@ def getFarmByID(params: dict):
     return response
 
 @app.put('/farm/update')
-def updateFarm(farm: FarmerFacilityDetails):
-    response = FarmerFacilityDetailsController.updateFarmerFacilityDetails(farm)
+def updateFarmerFacilityDetails(farmerfacilitydetails: FarmerFacilityDetails):
+    response = FarmerFacilityDetailsController.updateFarmerFacilityDetails(farmerfacilitydetails)
     return response
 
 @app.delete('/farm/delete')
-def deleteFarm(params: dict):
+def deleteFarmerFacilityDetails(params: dict):
     response = FarmerFacilityDetailsController.deleteFarmerFacilityDetails(params)
     return response
 
 # Cooperative
 @app.post('/cooperative/create')
-def createCooperative(coop: FarmerFacilityCooperative):
-    response = FarmerFacilityCooperativeController.createFarmerFacilityCooperative(coop)
+def createFarmerFacilityCooperative(farmerfacilitycooperative: FarmerFacilityCooperative):
+    response = FarmerFacilityCooperativeController.createFarmerFacilityCooperative(farmerfacilitycooperative)
     return response
 
 @app.get('/cooperatives')
@@ -199,8 +199,8 @@ def deleteCrop(params: dict):
 
 # Crop production
 @app.post('/crop-production/create')
-def createCropProduction(prod: CropProduction):
-    response = CropProductionController.createCropProduction(prod)
+def createCropProduction(cropproduction: CropProduction):
+    response = CropProductionController.createCropProduction(cropproduction)
     return response
 
 @app.get('/crop-productions')
@@ -225,8 +225,8 @@ def deleteCropProduction(params: dict):
 
 # Crop certificate
 @app.post('/crop-certificate')
-def createCropCertificate(cert: CropCertificate):
-    response = CropCertificateController.createCropCertificate(cert)
+def createCropCertificate(cropcertificate: CropCertificate):
+    response = CropCertificateController.createCropCertificate(cropcertificate)
     return response
 
 @app.get('/crop-certificates')
@@ -249,28 +249,235 @@ def deleteCropCertificate(params: dict):
     response = CropCertificateController.deleteCropCertificate(params)
     return response
 
-# WeatherForecast
-@app.post('/forecasts')
-def createWeatherForecast(forecast: WeatherForecast):
-    response = WeatherForecastController.createWeatherForecast(forecast)
+#Certificate Issuer
+@app.post('/certificate-issuer/create')
+def createCertificateIssuer(certificateissuer: CertificateIssuer):
+    response = CertificateIssuerController.createCertificateIssuer(certificateissuer)
     return response
 
-@app.get('/forecasts')
-def getWeatherForecasts():
-    response = WeatherForecastController.getWeatherForecasts()
+@app.get('/certificate-issuers')
+def getCertificateIssuers():
+    response = CertificateIssuerController.getCertificateIssuers()
     return response
 
-@app.get('/forecast')
-def getWeatherForecastByDate(params: date):
-    response = WeatherForecastController.getWeatherForecastByDate(params)
+@app.get('/certificate-issuer')
+def getCertificateIssuerByID(params: dict):
+    response = CertificateIssuerController.getCertificateIssuerByID(params)
     return response
 
-@app.put('/forecast/update')
-def updateWeatherForecast(forecast: WeatherForecast):
-    response = WeatherForecastController.updateWeatherForecast(forecast)
+@app.put('/certificate-issuer/update')
+def updateCertificateIssuer(certificateissuer: CertificateIssuer):
+    response = CertificateIssuerController.updateCertificateIssuer(certificateissuer)
     return response
 
-@app.delete('/forecast/delete')
-def deleteWeatherForecast(params: id):
-    response = WeatherForecastController.deleteWeatherForecast(params)
+@app.delete('/certificate-issuer/delete')
+def deleteCertificateIssuer(params: dict):
+    response = CertificateIssuerController.deleteCertificateIssuer(params)
+    return response
+
+# Contract
+@app.post('/contract')
+def createContract(contract: Contract):
+    response = ContractController.createContract(contract)
+    return response
+
+@app.get('/contracts')
+def getContracts():
+    response = ContractController.getContracts()
+    return response
+
+@app.get('/contract')
+def getContractByID(params: dict):
+    response = ContractController.getContractByID(params)
+    return response
+
+@app.put('/contract/update')
+def updateContract(contract: Contract):
+    response = ContractController.updateContract(contract)
+    return response
+
+@app.delete('/contract/delete')
+def deleteContract(params: dict):
+    response = ContractController.deleteContract(params)
+    return response
+
+# ContractBid
+@app.post('/contract-bid')
+def createContractBid(contractbid: ContractBid):
+    response = ContractBidController.createContractBid(contractbid)
+    return response
+
+@app.get('/contract-bids')
+def getContractBids():
+    response = ContractBidController.getContractBids()
+    return response
+
+@app.get('/contract-bid')
+def getContractBidByID(params: dict):
+    response = ContractBidController.getContractBidByID(params)
+    return response
+
+@app.put('/contract-bid/update')
+def updateContractBid(contractbid: ContractBid):
+    response = ContractBidController.updateContractBid(contractbid)
+    return response
+
+@app.delete('/contract-bid/delete')
+def deleteContractBid(params: dict):
+    response = ContractBidController.deleteContractBid(params)
+    return response
+
+# LogisticsCompany
+@app.post('/logistics-company')
+def createLogisticsCompany(logisticscompany: LogisticsCompany):
+    response = LogisticsCompanyController.createLogisticsCompany(logisticscompany)
+    return response
+
+@app.get('/logistics-companies')
+def getLogisticsCompanys():
+    response = LogisticsCompanyController.getLogisticsCompanys()
+    return response
+
+@app.get('/logistics-company')
+def getLogisticsCompanyByID(params: dict):
+    response = LogisticsCompanyController.getLogisticsCompanyByID(params)
+    return response
+
+@app.put('/logistics-company/update')
+def updateLogisticsCompany(logisticscompany: LogisticsCompany):
+    response = LogisticsCompanyController.updateLogisticsCompany(logisticscompany)
+    return response
+
+@app.delete('/logistics-company/delete')
+def deleteLogisticsCompany(params: dict):
+    response = LogisticsCompanyController.deleteLogisticsCompany(params)
+    return response
+
+# LogisticsCompanyDriver
+@app.post('/logistics-company-driver')
+def createLogisticsCompanyDriver(logisticscompanydriver: LogisticsCompanyDriver):
+    response = LogisticsCompanyDriverController.createLogisticsCompanyDriver(logisticscompanydriver)
+    return response
+
+@app.get('/logistics-company-drivers')
+def getLogisticsCompanyDrivers():
+    response = LogisticsCompanyDriverController.getLogisticsCompanyDrivers()
+    return response
+
+@app.get('/logistics-company-driver')
+def getLogisticsCompanyDriverByID(params: dict):
+    response = LogisticsCompanyDriverController.getLogisticsCompanyDriverByID(params)
+    return response
+
+@app.put('/logistics-company-driver/update')
+def updateLogisticsCompanyDriver(logisticscompanydriver: LogisticsCompanyDriver):
+    response = LogisticsCompanyDriverController.updateLogisticsCompanyDriver(logisticscompanydriver)
+    return response
+
+@app.delete('/logistics-company-driver/delete')
+def deleteLogisticsCompanyDriver(params: dict):
+    response = LogisticsCompanyDriverController.deleteLogisticsCompanyDriver(params)
+    return response
+
+# LogisticsVehicle
+@app.post('/logistics-vehicle')
+def createLogisticsVehicle(logisticsvehicle: LogisticsVehicle):
+    response = LogisticsVehicleController.createLogisticsVehicle(logisticsvehicle)
+    return response
+
+@app.get('/logistics-vehicles')
+def getLogisticsVehicles():
+    response = LogisticsVehicleController.getLogisticsVehicles()
+    return response
+
+@app.get('/logistics-vehicle')
+def getLogisticsVehicleByID(params: dict):
+    response = LogisticsVehicleController.getLogisticsVehicleByID(params)
+    return response
+
+@app.put('/logistics-vehicle/update')
+def updateLogisticsVehicle(logisticsvehicle: LogisticsVehicle):
+    response = LogisticsVehicleController.updateLogisticsVehicle(logisticsvehicle)
+    return response
+
+@app.delete('/logistics-vehicle/delete')
+def deleteLogisticsVehicle(params: dict):
+    response = LogisticsVehicleController.deleteLogisticsVehicle(params)
+    return response
+
+# LogisticsVehicleJourney
+@app.post('/logistics-vehicle-journey')
+def createLogisticsVehicleJourney(logisticsvehiclejourney: LogisticsVehicleJourney):
+    response = LogisticsVehicleJourneyController.createLogisticsVehicleJourney(logisticsvehiclejourney)
+    return response
+
+@app.get('/logistics-vehicle-journeys')
+def getLogisticsVehicleJourneys():
+    response = LogisticsVehicleJourneyController.getLogisticsVehicleJourneys()
+    return response
+
+@app.get('/logistics-vehicle-journey')
+def getLogisticsVehicleJourneyByID(params: dict):
+    response = LogisticsVehicleJourneyController.getLogisticsVehicleJourneyByID(params)
+    return response
+
+@app.put('/logistics-vehicle-journey/update')  
+def updateLogisticsVehicleJourney(logisticsvehiclejourney: LogisticsVehicleJourney):
+    response = LogisticsVehicleJourneyController.updateLogisticsVehicleJourney(logisticsvehiclejourney)
+    return response
+
+@app.delete('/logistics-vehicle-journey/delete')
+def deleteLogisticsVehicleJourney(params: dict):
+    response = LogisticsVehicleJourneyController.deleteLogisticsVehicleJourney(params)
+    return response
+
+@app.post('/gmbcertificate/create')
+def createGmbCertificate(gmbcertificate: GMBCertificate):
+    response = GMBCertificateController.createGMBCertificate(gmbcertificate)
+    return response
+
+@app.get('/gmbcertificates')
+def getGMBCertificates():
+    response = GMBCertificateController.getGMBCertificates()
+    return response
+
+@app.get('/gmbcertificate')
+def getGMBCertificateByID(params: dict):
+    response = GMBCertificateController.getGMBCertificateByID(params)
+    return response
+
+@app.put('/gmbcertificate/update')
+def updateGMBCertificate(gmbcertificate: GMBCertificate):
+    response = GMBCertificateController.updateGMBCertificate(gmbcertificate)
+    return response
+
+@app.delete('/gmbcertificate/delete')
+def deleteGMBCertificate(params: dict):
+    response = GMBCertificateController.deleteGMBCertificate(params)
+    return response
+
+# Commodity
+@app.post('/commodity/create')
+def  createCommodity(commodity: Commodity):
+    response = CommodityController.createCommodity(commodity)
+    return response
+
+@app.get('/commodities')
+def getCommodities():
+    response = CommodityController.getCommodities()
+    return response
+
+@app.get('/commodity')
+def getCommodityByID(params: dict):
+    response = CommodityController.getCommodityByID(params)
+    return response
+
+@app.put('/commodity/update')
+def updateCommodity(commodity: Commodity):
+    response = CommodityController.updateCommodity(commodity)
+    return response
+
+@app.delete('/commodity/delete')
+def deleteCommodity(params: dict):
+    response = CommodityController.deleteCommodity(params)
     return response
