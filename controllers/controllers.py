@@ -23,10 +23,7 @@ class FarmerController:
             'HomeTelephoneNumber' : farmer.HomeTelephoneNumber,
             'PhysicalAddress' : farmer.PhysicalAddress,
             'Province' : farmer.Province,
-            'Country' : farmer.Country,
-            'AccountNumber' : farmer.AccountNumber,
-            'SpouseNationalID' : farmer.SpouseNationalID,
-            'NextOfKinNationalID' : farmer.NextOfKinNationalID
+            'Country' : farmer.Country
         }).execute()
             return 'Farmer created successfully!'
         except Exception as e:
@@ -64,10 +61,7 @@ class FarmerController:
                 'HomeTelephoneNumber' : farmer.HomeTelephoneNumber,
                 'PhysicalAddress' : farmer.PhysicalAddress,
                 'Province' : farmer.Province,
-                'Country' : farmer.Country,
-                'AccountNumber' : farmer.AccountNumber,
-                'SpouseNationalID' : farmer.SpouseNationalID,
-                'NextOfKinNationalID' : farmer.NextOfKinNationalID
+                'Country' : farmer.Country
             }).eq('FarmerID', farmer.FarmerID).execute()
             return 'Farmer updated successfully!'
         except Exception as e:
@@ -89,7 +83,8 @@ class FarmerNextOfKinController:
             'FirstName' : farmernextofkin.FirstName,
             'Surname' : farmernextofkin.Surname,
             'Address' : farmernextofkin.Address,
-            'PhoneNumber' : farmernextofkin.PhoneNumber
+            'PhoneNumber' : farmernextofkin.PhoneNumber,
+            'FarmerID' : farmernextofkin.FarmerID
         }).execute()
             return 'FarmerNextOfKin created successfully!'
         except Exception as e:
@@ -115,7 +110,8 @@ class FarmerNextOfKinController:
                 'FirstName' : farmernextofkin.FirstName,
                 'Surname' : farmernextofkin.Surname,
                 'Address' : farmernextofkin.Address,
-                'PhoneNumber' : farmernextofkin.PhoneNumber
+                'PhoneNumber' : farmernextofkin.PhoneNumber,
+                'FarmerID' : farmernextofkin.FarmerID
             }).eq('NationalID', farmernextofkin.NationalID).execute()
             return 'FarmerNextOfKin updated successfully!'
         except Exception as e:
@@ -140,7 +136,8 @@ class FarmerBankDetailsController:
             'AccountName' : farmerbankdetails.AccountName,
             'AccountType' : farmerbankdetails.AccountType,
             'WalletAddress' : farmerbankdetails.WalletAddress,
-            'WalletType' : farmerbankdetails.WalletType
+            'WalletType' : farmerbankdetails.WalletType,
+            'FarmerID' : farmerbankdetails.FarmerID
         }).execute()
             return 'FarmerBankDetails created successfully!'
         except Exception as e:
@@ -169,7 +166,8 @@ class FarmerBankDetailsController:
                 'AccountName' : farmerbankdetails.AccountName,
                 'AccountType' : farmerbankdetails.AccountType,
                 'WalletAddress' : farmerbankdetails.WalletAddress,
-                'WalletType' : farmerbankdetails.WalletType
+                'WalletType' : farmerbankdetails.WalletType,
+                'FarmerID' : farmerbankdetails.FarmerID
             }).eq('AccountNumber', farmerbankdetails.AccountNumber).execute()
             return 'FarmerBankDetails updated successfully!'
         except Exception as e:
@@ -191,7 +189,8 @@ class FarmerSpouseController:
             'FirstName' : farmerspouse.FirstName,
             'Surname' : farmerspouse.Surname,
             'Address' : farmerspouse.Address,
-            'PhoneNumber' : farmerspouse.PhoneNumber
+            'PhoneNumber' : farmerspouse.PhoneNumber,
+            'FarmerID' : farmerspouse.FarmerID
         }).execute()
             return 'FarmerSpouse created successfully!'
         except Exception as e:
@@ -217,7 +216,8 @@ class FarmerSpouseController:
                 'FirstName' : farmerspouse.FirstName,
                 'Surname' : farmerspouse.Surname,
                 'Address' : farmerspouse.Address,
-                'PhoneNumber' : farmerspouse.PhoneNumber
+                'PhoneNumber' : farmerspouse.PhoneNumber,
+                'FarmerID' : farmerspouse.FarmerID
             }).eq('NationalID', farmerspouse.NationalID).execute()
             return 'FarmerSpouse updated successfully!'
         except Exception as e:
@@ -248,10 +248,9 @@ class FarmerFacilityDetailsController:
             'LandType' : farmerfacilitydetails.LandType,
             'ArableLandSize' : farmerfacilitydetails.ArableLandSize,
             'NearestGMBDepot' : farmerfacilitydetails.NearestGMBDepot,
-            'CropID' : farmerfacilitydetails.CropID,
             'OfferLetterPlotNumber' : farmerfacilitydetails.OfferLetterPlotNumber,
             'AgritexReference' : farmerfacilitydetails.AgritexReference,
-            'CooperativeID' : farmerfacilitydetails.CooperativeID
+            'FarmerID' : farmerfacilitydetails.FarmerID
         }).execute()
             return 'FarmerFacilityDetails created successfully!'
         except Exception as e:
@@ -286,10 +285,9 @@ class FarmerFacilityDetailsController:
                 'LandType' : farmerfacilitydetails.LandType,
                 'ArableLandSize' : farmerfacilitydetails.ArableLandSize,
                 'NearestGMBDepot' : farmerfacilitydetails.NearestGMBDepot,
-                'CropID' : farmerfacilitydetails.CropID,
                 'OfferLetterPlotNumber' : farmerfacilitydetails.OfferLetterPlotNumber,
                 'AgritexReference' : farmerfacilitydetails.AgritexReference,
-                'CooperativeID' : farmerfacilitydetails.CooperativeID
+                'FarmerID' : farmerfacilitydetails.FarmerID
             }).eq('FarmID', farmerfacilitydetails.FarmID).execute()
             return 'FarmerFacilityDetails updated successfully!'
         except Exception as e:
@@ -313,7 +311,8 @@ class FarmerFacilityCooperativeController:
             'AgriculturalSector' : farmerfacilitycooperative.AgriculturalSector,
             'NumberOfFarmers' : farmerfacilitycooperative.NumberOfFarmers,
             'LeadAgritexOfficer' : farmerfacilitycooperative.LeadAgritexOfficer,
-            'LeadAgronomist' : farmerfacilitycooperative.LeadAgronomist
+            'LeadAgronomist' : farmerfacilitycooperative.LeadAgronomist,
+            'FarmID' : farmerfacilitycooperative.FarmID
         }).execute()
             return 'FarmerFacilityCooperative created successfully!'
         except Exception as e:
@@ -341,7 +340,8 @@ class FarmerFacilityCooperativeController:
                 'AgriculturalSector' : farmerfacilitycooperative.AgriculturalSector,
                 'NumberOfFarmers' : farmerfacilitycooperative.NumberOfFarmers,
                 'LeadAgritexOfficer' : farmerfacilitycooperative.LeadAgritexOfficer,
-                'LeadAgronomist' : farmerfacilitycooperative.LeadAgronomist
+                'LeadAgronomist' : farmerfacilitycooperative.LeadAgronomist,
+                'FarmID' : farmerfacilitycooperative.FarmID
             }).eq('CooperativeID', farmerfacilitycooperative.CooperativeID).execute()
             return 'FarmerFacilityCooperative updated successfully!'
         except Exception as e:
@@ -362,8 +362,7 @@ class CropController:
             'CropID' : crop.CropID,
             'CropName' : crop.CropName,
             'Season' : crop.Season,
-            'GMBCertificateID' : crop.CertificateID,
-            'ProductionReferenceID' : crop.ProductionReference
+            'FarmID' : crop.FarmID
         }).execute()
             return 'Crop created successfully!'
         except Exception as e:
@@ -388,8 +387,7 @@ class CropController:
             supabase.table('Crop').update({
                 'CropName' : crop.CropName,
                 'Season' : crop.Season,
-                'GMBCertificateID' : crop.GMBCertificateID,
-                'ProductionReferenceID' : crop.ProductionReferenceID
+                'FarmID' : crop.FarmID
             }).eq('CropID', crop.CropID).execute()
             return 'Crop updated successfully!'
         except Exception as e:
@@ -410,7 +408,8 @@ class CropProductionController:
             'ProductionReferenceID' : cropproduction.ProductionReferenceID,
             'PlantingDate' : cropproduction.PlantingDate,
             'HarvestDate' : cropproduction.HarvestDate,
-            'CropYield' : cropproduction.CropYield
+            'CropYield' : cropproduction.CropYield,
+            'CropID' : cropproduction.CropID
         }).execute()
             return 'CropProduction created successfully!'
         except Exception as e:
@@ -435,7 +434,8 @@ class CropProductionController:
             supabase.table('CropProduction').update({
                 'PlantingDate' : cropproduction.PlantingDate,
                 'HarvestDate' : cropproduction.HarvestDate,
-                'CropYield' : cropproduction.CropYield
+                'CropYield' : cropproduction.CropYield,
+                'CropID' : cropproduction.CropID
             }).eq('ProductionReferenceID', cropproduction.ProductionReferenceID).execute()
             return 'CropProduction updated successfully!'
         except Exception as e:
@@ -460,7 +460,8 @@ class CropCertificateController:
             'MarketValueOnDateOfIssue' : cropcertificate.MarketValueOnDateOfIssue,
             'CropGrade' : cropcertificate.CropGrade,
             'DateOfExpiry' : cropcertificate.DateOfExpiry,
-            'MarketValueOnDateOfExpiry' : cropcertificate.MarketValueOnDateOfExpiry
+            'MarketValueOnDateOfExpiry' : cropcertificate.MarketValueOnDateOfExpiry,
+            'CropID' : cropcertificate.CropID
         }).execute()
             return 'CropCertificate created successfully!'
         except Exception as e:
@@ -489,7 +490,8 @@ class CropCertificateController:
                 'MarketValueOnDateOfIssue' : cropcertificate.MarketValueOnDateOfIssue,
                 'CropGrade' : cropcertificate.CropGrade,
                 'DateOfExpiry' : cropcertificate.DateOfExpiry,
-                'MarketValueOnDateOfExpiry' : cropcertificate.MarketValueOnDateOfExpiry
+                'MarketValueOnDateOfExpiry' : cropcertificate.MarketValueOnDateOfExpiry,
+                'CropID' : cropcertificate.CropID
             }).eq('CertificateID', cropcertificate.CertificateID).execute()
             return 'CropCertificate updated successfully!'
         except Exception as e:
@@ -510,7 +512,7 @@ class CertificateIssuerController:
             'IssuerID' : certificateissuer.IssuerID,
             'IssuerName' : certificateissuer.IssuerName,
             'AllowedToExport' : certificateissuer.AllowedToExport,
-            'ContractID' : certificateissuer.ContractID
+            'CertificateID' : certificateissuer.CertificateID
         }).execute()
             return 'CertificateIssuer created successfully!'
         except Exception as e:
@@ -535,7 +537,7 @@ class CertificateIssuerController:
             supabase.table('CertificateIssuer').update({
                 'IssuerName' : certificateissuer.IssuerName,
                 'AllowedToExport' : certificateissuer.AllowedToExport,
-                'ContractID' : certificateissuer.ContractID
+                'CertificateID' : certificateissuer.CertificateID
             }).eq('IssuerID', certificateissuer.IssuerID).execute()
             return 'CertificateIssuer updated successfully!'
         except Exception as e:
@@ -560,7 +562,8 @@ class ContractController:
             'TenderDate' : contract.TenderDate,
             'ClosingDate' : contract.ClosingDate,
             'AwardDate' : contract.AwardDate,
-            'AwardedTo' : contract.AwardedTo
+            'AwardedTo' : contract.AwardedTo,
+            'IssuerID' : contract.IssuerID
         }).execute()
             return 'Contract created successfully!'
         except Exception as e:
@@ -589,7 +592,8 @@ class ContractController:
                 'TenderDate' : contract.TenderDate,
                 'ClosingDate' : contract.ClosingDate,
                 'AwardDate' : contract.AwardDate,
-                'AwardedTo' : contract.AwardedTo
+                'AwardedTo' : contract.AwardedTo,
+                'IssuerID' : contract.IssuerID
             }).eq('ContractID', contract.ContractID).execute()
             return 'Contract updated successfully!'
         except Exception as e:
@@ -639,7 +643,7 @@ class ContractBidController:
                 'BidOpeningDate' : contractbid.BidOpeningDate,
                 'BidStatus' : contractbid.BidStatus,
                 'BidAmount' : contractbid.BidAmount,
-                'BidClosingDate' : contractbid.BidClosingDate
+                'BidClosingDate' : contractbid.BidClosingDate,
             }).eq('BidID', contractbid.BidID).execute()
             return 'ContractBid updated successfully!'
         except Exception as e:
@@ -652,7 +656,6 @@ class ContractBidController:
         except Exception as e:
             return e
 
-
 class LogisticsCompanyController:
     def createLogisticsCompany(logisticscompany: LogisticsCompany):
         try:
@@ -663,7 +666,7 @@ class LogisticsCompanyController:
             'ContactNumber' : logisticscompany.ContactNumber,
             'ContactEmail' : logisticscompany.ContactEmail,
             'PerformanceRating' : logisticscompany.PerformanceRating,
-            'VehicleID' : logisticscompany.VehicleID
+            'BidID' : logisticscompany.BidID
         }).execute()
             return 'LogisticsCompany created successfully!'
         except Exception as e:
@@ -691,7 +694,7 @@ class LogisticsCompanyController:
                 'ContactNumber' : logisticscompany.ContactNumber,
                 'ContactEmail' : logisticscompany.ContactEmail,
                 'PerformanceRating' : logisticscompany.PerformanceRating,
-                'VehicleID' : logisticscompany.VehicleID
+                'BidID' : logisticscompany.BidID
             }).eq('CompanyID', logisticscompany.CompanyID).execute()
             return 'LogisticsCompany updated successfully!'
         except Exception as e:
@@ -752,7 +755,6 @@ class LogisticsCompanyDriverController:
         except Exception as e:
             return e
 
-
 class LogisticsVehicleController:
     def createLogisticsVehicle(logisticsvehicle: LogisticsVehicle):
         try:
@@ -765,8 +767,7 @@ class LogisticsVehicleController:
             'GrossVehicleMass' : logisticsvehicle.GrossVehicleMass,
             'LastMaintenanceDate' : logisticsvehicle.LastMaintenanceDate,
             'NextMaintenanceDate' : logisticsvehicle.NextMaintenanceDate,
-            'JourneyID' : logisticsvehicle.JourneyID,
-            'DriverID' : logisticsvehicle.DriverID
+            'BidID' : logisticsvehicle.BidID
         }).execute()
             return 'LogisticsVehicle created successfully!'
         except Exception as e:
@@ -796,8 +797,7 @@ class LogisticsVehicleController:
                 'GrossVehicleMass' : logisticsvehicle.GrossVehicleMass,
                 'LastMaintenanceDate' : logisticsvehicle.LastMaintenanceDate,
                 'NextMaintenanceDate' : logisticsvehicle.NextMaintenanceDate,
-                'JourneyID' : logisticsvehicle.JourneyID,
-                'DriverID' : logisticsvehicle.DriverID
+                'BidID' : logisticsvehicle.BidID
             }).eq('VehicleID', logisticsvehicle.VehicleID).execute()
             return 'LogisticsVehicle updated successfully!'
         except Exception as e:
@@ -859,5 +859,102 @@ class LogisticsVehicleJourneyController:
         try:
             response = supabase.table('LogisticsVehicleJourney').delete().eq('JourneyID', params['JourneyID']).execute()
             return response.data
+        except Exception as e:
+            return e
+        
+                
+#GMB Certificate
+class GMBCertificateController:
+    def createGMBCertificate(gmbcertificate: GMBCertificate):
+        try:
+            supabase.table('GMBCertificate').insert({
+            'GMBCertificateID' : gmbcertificate.GMBCertificateID,
+            'IssuedBy' : gmbcertificate.IssuedBy,
+            'DateOfIssue' : gmbcertificate.DateOfIssue,
+            'MarketValueOnDateOfIssue' : gmbcertificate.MarketValueOnDateOfIssue,
+            'CropGrade' : gmbcertificate.CropGrade,
+            'DateOfExpiry' : gmbcertificate.DateOfExpiry,
+            'MarketValueOnDateOfExpiry' : gmbcertificate.MarketValueOnDateOfExpiry
+        }).execute()
+            return 'GMBCertificate created successfully!'
+        except Exception as e:
+            return e
+        
+    def getGMBCertificates():
+        try:
+            data = supabase.from_('GMBCertificate').select('*').order(column='id').execute()
+            return data
+        except Exception as e:
+            return e
+        
+    def getGMBCertificateByID(params):
+        try:
+            data = supabase.from_('GMBCertificate').select('*').eq('GMBCertificateID', params['GMBCertificateID']).execute()
+            return data
+        except Exception as e:
+            return e
+        
+    def updateGMBCertificate(gmbcertificate: GMBCertificate):
+        try:
+            supabase.from_('GMBCertificate').update({
+                'IssuedBy' : gmbcertificate.IssuedBy,
+                'DateOfIssue' : gmbcertificate.DateOfIssue,
+                'MarketValueOnDateOfIssue' : gmbcertificate.MarketValueOnDateOfIssue,
+                'CropGrade' : gmbcertificate.CropGrade,
+                'DateOfExpiry' : gmbcertificate.DateOfExpiry,
+                'MarketValueOnDateOfExpiry' : gmbcertificate.MarketValueOnDateOfExpiry
+            }).eq('GMBCertificateID', gmbcertificate.GMBCertificateID).execute()
+            return 'GMBCertificate updated successfully!'
+        except Exception as e:
+            return e
+        
+    def deleteGMBCertificate(params):
+        try:
+            data = supabase.table('GMBCertificate').delete().eq('GMBCertificateID', params['GMBCertificateID']).execute()
+            return "GMBCertificate deleted successfully!"
+        except Exception as e:
+            return e
+        
+# Commodity
+class CommodityController:
+    def createCommodity(commodity: Commodity):
+        try:
+            supabase.table('Commodity').insert({
+            'CommodityID' : commodity.CommodityID,
+            'CommodityName' : commodity.CommodityName,
+            'CommodityProducerPrice' : commodity.CommodityProducerPrice,
+        }).execute()
+            return 'Commodity created successfully!'
+        except Exception as e:
+            return e
+        
+    def getCommodities():
+        try:
+            data = supabase.from_('Commodity').select('*').order(column='id').execute()
+            return data
+        except Exception as e:
+            return e
+        
+    def getCommodityByID(params):
+        try:
+            data = supabase.from_('Commodity').select('*').eq('CommodityID', params['CommodityID']).execute()
+            return data
+        except Exception as e:
+            return e
+        
+    def updateCommodity(commodity: Commodity):
+        try:
+            supabase.from_('Commodity').update({
+                'CommodityName' : commodity.CommodityName,
+                'CommodityProducerPrice' : commodity.CommodityProducerPrice,
+            }).eq('CommodityID', commodity.CommodityID).execute()
+            return 'Commodity updated successfully!'
+        except Exception as e:
+            return e
+        
+    def deleteCommodity(params):
+        try:
+            data = supabase.table('Commodity').delete().eq('CommodityID', params['CommodityID']).execute()
+            return "Commodity deleted successfully!"
         except Exception as e:
             return e

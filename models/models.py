@@ -1,9 +1,10 @@
 from pydantic import BaseModel
 from datetime import date
+from typing import Optional
 
 class Farmer(BaseModel):
     NationalID: str
-    FarmerID: str
+    FarmerID: int
     Title: str
     FirstName: str
     Gender: str
@@ -19,9 +20,6 @@ class Farmer(BaseModel):
     PhysicalAddress: str
     Province: str
     Country: str
-    AccountNumber: str
-    SpouseNationalID: str
-    NextOfKinNationalID: str
 
 class FarmerNextOfKin(BaseModel):
     NationalID: str
@@ -29,6 +27,7 @@ class FarmerNextOfKin(BaseModel):
     Surname: str
     Address: str
     PhoneNumber: str
+    FarmerID: Optional[int]
 
 class FarmerBankDetails(BaseModel):
     AccountNumber: str
@@ -39,6 +38,7 @@ class FarmerBankDetails(BaseModel):
     AccountType: str
     WalletAddress: str
     WalletType: str
+    FarmerID: int
 
 class FarmerSpouse(BaseModel):
     NationalID: str
@@ -46,6 +46,7 @@ class FarmerSpouse(BaseModel):
     Surname: str
     Address: str
     PhoneNumber: str
+    FarmerID: int
 
 class FarmerFacilityDetails(BaseModel):
     FarmID: str
@@ -61,10 +62,9 @@ class FarmerFacilityDetails(BaseModel):
     LandType: str
     ArableLandSize: int
     NearestGMBDepot: str
-    CropID: str
     OfferLetterPlotNumber: str
     AgritexReference: str
-    CooperativeID: str
+    FarmerID: int
 
 class FarmerFacilityCooperative(BaseModel):
     CooperativeID: str
@@ -74,53 +74,56 @@ class FarmerFacilityCooperative(BaseModel):
     NumberOfFarmers: int
     LeadAgritexOfficer: str
     LeadAgronomist: str
+    FarmID: int
 
 class Crop(BaseModel):
     CropID: str
     CropName: str
     Season: str
-    CertificateID: str
-    ProductionReference: str
+    FarmID: int
 
 class CropProduction(BaseModel):
     ProductionReferenceID: str
-    PlantingDate: date
-    HarvestDate: date
+    PlantingDate: str
+    HarvestDate: str
     CropYield: float
+    CropID: str
 
 class CropCertificate(BaseModel):
     CertificateID: str
     CertificateName: str
     IssuedBy: str
-    DateOfIssue: date
+    DateOfIssue: str
     MarketValueOnDateOfIssue: float
     CropGrade: str
-    DateOfExpiry: date
-    MarketValueOfDateOfExpiry: float
+    DateOfExpiry: str
+    MarketValueOnDateOfExpiry: float
+    CropID: str
 
 class CertificateIssuer(BaseModel):
     IssuerID: str
     IssuerName: str
-    AllowedToExport: str
-    ContractID: str
+    AllowedToExport: bool
+    CertificateID: str
 
 class Contract(BaseModel):
     ContractID: str
     ContractTitle: str
     ContractDescription: str
     ContractValue: float
-    TenderDate: date
-    ClosingDate: date
-    AwardDate: date
+    TenderDate: str
+    ClosingDate: str
+    AwardDate: str
     AwardedTo: str
+    IssuerID: str
 
 class ContractBid(BaseModel):
     BidID: str
-    ContractID: str
-    BidOpeningDate: date
+    BidOpeningDate: str
     BidStatus: str
     BidAmount: float
-    BidClosingDate: date
+    BidClosingDate: str
+    ContractID: str
 
 class LogisticsCompany(BaseModel):
     CompanyID: str
@@ -129,14 +132,14 @@ class LogisticsCompany(BaseModel):
     ContactNumber: str
     ContactEmail: str
     PerformanceRating: float
-    VehicleID: str
+    BidID: str
 
 class LogisticsCompanyDriver(BaseModel):
     DriverID: str
     FirstName: str
     Surname: str
     LicenseNumber: str
-    DateOfLastRoadTest: date
+    DateOfLastRoadTest: str
 
 class LogisticsVehicle(BaseModel):
     VehicleID: str
@@ -145,10 +148,9 @@ class LogisticsVehicle(BaseModel):
     Model: str
     NetVehicleMass: int
     GrossVehicleMass: int
-    LastMaintenanceDate: date
-    NextMaintenenceDate: date
-    JourneyID: str
-    DriverID: str
+    LastMaintenanceDate: str
+    NextMaintenanceDate: str
+    BidID: str
 
 class LogisticsVehicleJourney(BaseModel):
     JourneyID: str
@@ -158,3 +160,17 @@ class LogisticsVehicleJourney(BaseModel):
     Destination: str
     CurrentLocationLat: float
     CurrentLocationLong: float
+    
+class GMBCertificate(BaseModel):
+    GMBCertificateID: str
+    IssuedBy: str
+    DateOfIssue: str
+    MarketValueOnDateOfIssue: float
+    CropGrade: str
+    DateOfExpiry: str
+    MarketValueOnDateOfExpiry: float
+    
+class Commodity(BaseModel):
+    CommodityID: str
+    CommodityName: str
+    CommodityProducerPrice: float
